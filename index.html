@@ -2,11 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dashboard</title>
+<title>Microfinance Dashboard</title>
 <link rel="stylesheet" href="css/style.css">
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
 </head>
 <body>
 <h1>Microfinance Dashboard</h1>
-<p>Welcome! This will be your dashboard.</p>
+
+<div class="dashboard">
+  <div class="card">
+    <h3>Active Loans</h3>
+    <p id="activeLoans">0</p>
+  </div>
+  <div class="card">
+    <h3>Total Released</h3>
+    <p id="totalReleased">₱0</p>
+  </div>
+  <div class="card">
+    <h3>Total Collected</h3>
+    <p id="totalCollected">₱0</p>
+  </div>
+  <div class="card">
+    <h3>Total Profit</h3>
+    <p id="totalProfit">₱0</p>
+  </div>
+  <div class="card">
+    <h3>Overdue Loans</h3>
+    <p id="overdueLoans">0</p>
+  </div>
+</div>
+
+<script>
+loadDashboard();
+</script>
 </body>
 </html>
