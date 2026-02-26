@@ -99,3 +99,20 @@ ul li {
         flex-direction: column;
     }
 }
+.navbar {
+    background-color: #40739e;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
