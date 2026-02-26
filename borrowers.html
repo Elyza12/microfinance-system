@@ -1,3 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Borrowers</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    display:flex;
+    background:#f4f6f9;
+}
+
+.sidebar{
+    width:230px;
+    background:#111827;
+    color:white;
+    height:100vh;
+    padding:20px;
+    position:fixed;
+}
+
+.sidebar h2{
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px;
+    margin-bottom:10px;
+    color:#cbd5e1;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#2563eb;
+    color:white;
+}
+
+.main{
+    margin-left:230px;
+    padding:30px;
+    width:100%;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.topbar h1{
+    font-size:24px;
+}
+
+.profile{
+    background:white;
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:14px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.table-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid #eee;
+}
+
+th{
+    background:#f9fafb;
+}
+
+.badge{
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.active{
+    background:#d1fae5;
+    color:#065f46;
+}
+
+.overdue{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.closed{
+    background:#e0e7ff;
+    color:#3730a3;
+}
+</style>
+</head>
+
 <body>
 
 <div class="sidebar">
@@ -8,39 +127,43 @@
 </div>
 
 <div class="main">
-    <h2>Borrowers</h2>
-
-    <div class="card">
-        <h3>Add Borrower</h3>
-        <input type="text" id="borrowerName" placeholder="Full Name">
-        <input type="text" id="borrowerContact" placeholder="Contact">
-        <input type="text" id="borrowerAddress" placeholder="Address">
-        <button onclick="addBorrowerHandler()">Add Borrower</button>
+    <div class="topbar">
+        <h1>Borrowers</h1>
+        <div class="profile">Admin</div>
     </div>
 
-    <div class="card">
-        <h3>Borrower List</h3>
-        <ul id="borrowerList"></ul>
-    </div>
+    <div class="table-card">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Loan Amount</th>
+                <th>Status</th>
+            </tr>
 
-    <div class="card">
-        <h3>Create Loan</h3>
-        <select id="borrowerSelect"></select>
-        <input type="number" id="loanPrincipal" placeholder="Principal">
-        <select id="interestType">
-            <option value="PERCENT">Percent</option>
-            <option value="MANUAL">Manual</option>
-        </select>
-        <input type="number" id="interestRate" placeholder="Interest Rate or Amount">
-        <input type="date" id="releaseDate">
-        <input type="date" id="dueDate">
-        <input type="number" id="monthlyPenalty" placeholder="Monthly Penalty">
-        <button onclick="addLoanHandler()">Create Loan</button>
+            <tr>
+                <td>Juan Dela Cruz</td>
+                <td>₱10,000</td>
+                <td><span class="badge active">Active</span></td>
+            </tr>
+
+            <tr>
+                <td>Maria Santos</td>
+                <td>₱8,000</td>
+                <td><span class="badge overdue">Overdue</span></td>
+            </tr>
+
+            <tr>
+                <td>Pedro Reyes</td>
+                <td>₱5,000</td>
+                <td><span class="badge closed">Closed</span></td>
+            </tr>
+        </table>
     </div>
 </div>
 
 <script>
-loadBorrowers();
+lucide.createIcons();
 </script>
 
 </body>
+</html>
