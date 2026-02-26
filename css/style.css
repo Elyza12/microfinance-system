@@ -1,48 +1,115 @@
-/* Navigation Bar */
-.navbar {
-    background-color: #40739e;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
-.navbar a {
+
+body {
+    display: flex;
+    background: #f4f6f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #1e272e;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
     color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #d2dae2;
+    padding: 12px 20px;
     text-decoration: none;
-    font-weight: bold;
-    margin-right: 15px;
-}
-.navbar a:hover {
-    text-decoration: underline;
+    transition: 0.3s;
 }
 
-/* Cards (re-use your previous card CSS) */
-.card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin-bottom: 20px;
+.sidebar a:hover {
+    background: #485460;
+    color: #fff;
 }
 
-/* Inputs */
-input, select {
-    padding: 10px;
-    margin: 5px 0 15px 0;
-    border-radius: 5px;
-    border: 1px solid #dcdde1;
+.sidebar a.active {
+    background: #40739e;
+    color: #fff;
+}
+
+/* MAIN CONTENT */
+.main {
+    margin-left: 220px;
+    padding: 30px;
     width: 100%;
 }
 
-/* Buttons */
-button {
-    background-color: #40739e;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+h1, h2 {
+    margin-bottom: 20px;
 }
+
+/* DASHBOARD CARDS */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #40739e;
+}
+
+.card p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* FORMS */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border-radius: 6px;
+    border: 1px solid #dcdde1;
+}
+
+button {
+    background: #40739e;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 button:hover {
-    background-color: #2f3640;
+    background: #273c75;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
 }
