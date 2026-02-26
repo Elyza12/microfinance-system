@@ -1,1 +1,41 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Borrowers</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/api.js"></script>
+<script src="js/borrowers.js"></script>
+</head>
+<body>
+<h2>Borrowers</h2>
+<div class="card">
+<h3>Add Borrower</h3>
+<input type="text" id="borrowerName" placeholder="Full Name">
+<input type="text" id="borrowerContact" placeholder="Contact">
+<input type="text" id="borrowerAddress" placeholder="Address">
+<button onclick="addBorrowerHandler()">Add Borrower</button>
+</div>
+<div class="card">
+<h3>Borrower List</h3>
+<ul id="borrowerList"></ul>
+</div>
+<div class="card">
+<h3>Create Loan</h3>
+<select id="borrowerSelect"></select>
+<input type="number" id="loanPrincipal" placeholder="Principal">
+<select id="interestType">
+<option value="PERCENT">Percent</option>
+<option value="MANUAL">Manual</option>
+</select>
+<input type="number" id="interestRate" placeholder="Interest Rate or Amount">
+<input type="date" id="releaseDate">
+<input type="date" id="dueDate">
+<input type="number" id="monthlyPenalty" placeholder="Monthly Penalty">
+<button onclick="addLoanHandler()">Create Loan</button>
+</div>
+<script>
+loadBorrowers();
+</script>
+</body>
+</html>
