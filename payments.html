@@ -1,3 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Payments</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    display:flex;
+    background:#f4f6f9;
+}
+
+.sidebar{
+    width:230px;
+    background:#111827;
+    color:white;
+    height:100vh;
+    padding:20px;
+    position:fixed;
+}
+
+.sidebar h2{
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px;
+    margin-bottom:10px;
+    color:#cbd5e1;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#2563eb;
+    color:white;
+}
+
+.main{
+    margin-left:230px;
+    padding:30px;
+    width:100%;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.topbar h1{
+    font-size:24px;
+}
+
+.profile{
+    background:white;
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:14px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.table-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid #eee;
+}
+
+th{
+    background:#f9fafb;
+}
+</style>
+</head>
+
 <body>
 
 <div class="sidebar">
@@ -8,26 +105,37 @@
 </div>
 
 <div class="main">
-    <h2>Payments</h2>
-
-    <div class="card">
-        <h3>Record Payment</h3>
-        <select id="borrowerSelect"></select>
-        <select id="loanSelect"></select>
-        <input type="number" id="principalPaid" placeholder="Principal Paid">
-        <input type="number" id="interestPaid" placeholder="Interest Paid">
-        <input type="number" id="penaltyPaid" placeholder="Penalty Paid">
-        <button onclick="recordPaymentHandler()">Submit Payment</button>
+    <div class="topbar">
+        <h1>Payments</h1>
+        <div class="profile">Admin</div>
     </div>
 
-    <div class="card">
-        <h3>Payment History</h3>
-        <ul id="paymentHistory"></ul>
+    <div class="table-card">
+        <table>
+            <tr>
+                <th>Borrower</th>
+                <th>Date</th>
+                <th>Amount</th>
+            </tr>
+
+            <tr>
+                <td>Juan Dela Cruz</td>
+                <td>Feb 20, 2026</td>
+                <td>₱1,000</td>
+            </tr>
+
+            <tr>
+                <td>Maria Santos</td>
+                <td>Feb 18, 2026</td>
+                <td>₱800</td>
+            </tr>
+        </table>
     </div>
 </div>
 
 <script>
-loadBorrowersForPayment();
+lucide.createIcons();
 </script>
 
 </body>
+</html>
