@@ -3,116 +3,82 @@
 <head>
 <title>Borrowers</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-body{
-    display:flex;
-    background:#f4f6f9;
-}
+body{display:flex;background:#f4f6f9;}
 
 .sidebar{
-    width:230px;
-    background:#111827;
-    color:white;
-    height:100vh;
-    padding:20px;
-    position:fixed;
+width:230px;background:#111827;color:white;height:100vh;padding:20px;position:fixed;
 }
 
-.sidebar h2{
-    margin-bottom:30px;
-}
+.sidebar h2{margin-bottom:30px;}
 
 .sidebar a{
-    display:block;
-    padding:12px;
-    margin-bottom:10px;
-    color:#cbd5e1;
-    text-decoration:none;
-    border-radius:8px;
+display:block;padding:12px;margin-bottom:10px;color:#cbd5e1;
+text-decoration:none;border-radius:8px;
 }
 
-.sidebar a:hover,
-.sidebar a.active{
-    background:#2563eb;
-    color:white;
+.sidebar a:hover,.sidebar a.active{
+background:#2563eb;color:white;
 }
 
 .main{
-    margin-left:230px;
-    padding:30px;
-    width:100%;
+margin-left:230px;padding:30px;width:100%;
+animation:fadeIn .4s ease-in-out;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
+display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;
 }
 
-.topbar h1{
-    font-size:24px;
+button{
+background:#2563eb;color:white;border:none;
+padding:10px 15px;border-radius:8px;cursor:pointer;
+transition:.2s;
 }
 
-.profile{
-    background:white;
-    padding:8px 15px;
-    border-radius:20px;
-    font-size:14px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+button:hover{transform:scale(1.05);}
+
+.search{
+padding:10px;border-radius:8px;border:1px solid #ddd;width:250px;
 }
 
 .table-card{
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+background:white;padding:20px;border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-}
+table{width:100%;border-collapse:collapse;}
 
-th,td{
-    padding:12px;
-    text-align:left;
-    border-bottom:1px solid #eee;
-}
-
-th{
-    background:#f9fafb;
-}
+th,td{padding:12px;border-bottom:1px solid #eee;text-align:left;}
 
 .badge{
-    padding:5px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:600;
+padding:5px 10px;border-radius:20px;font-size:12px;font-weight:600;
 }
 
-.active{
-    background:#d1fae5;
-    color:#065f46;
+.active{background:#d1fae5;color:#065f46;}
+.overdue{background:#fee2e2;color:#991b1b;}
+.closed{background:#e0e7ff;color:#3730a3;}
+
+.modal{
+display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.4);justify-content:center;align-items:center;
 }
 
-.overdue{
-    background:#fee2e2;
-    color:#991b1b;
+.modal-content{
+background:white;padding:25px;border-radius:12px;width:350px;
+animation:fadeIn .3s ease;
 }
 
-.closed{
-    background:#e0e7ff;
-    color:#3730a3;
+.modal-content input{
+width:100%;margin-bottom:10px;padding:8px;border-radius:6px;border:1px solid #ccc;
 }
 </style>
 </head>
@@ -120,49 +86,113 @@ th{
 <body>
 
 <div class="sidebar">
-    <h2>Microfinance</h2>
-    <a href="index.html">Dashboard</a>
-    <a href="borrowers.html" class="active">Borrowers</a>
-    <a href="payments.html">Payments</a>
+<h2>Microfinance</h2>
+<a href="index.html">Dashboard</a>
+<a href="borrowers.html" class="active">Borrowers</a>
+<a href="payments.html">Payments</a>
 </div>
 
 <div class="main">
-    <div class="topbar">
-        <h1>Borrowers</h1>
-        <div class="profile">Admin</div>
-    </div>
+<div class="topbar">
+<h1>Borrowers</h1>
+<div>
+<input type="text" id="search" class="search" placeholder="Search borrower...">
+<button onclick="openModal()">+ Add Borrower</button>
+</div>
+</div>
 
-    <div class="table-card">
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Loan Amount</th>
-                <th>Status</th>
-            </tr>
+<div class="table-card">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Loan</th>
+<th>Balance</th>
+<th>Due Date</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody id="borrowerTable"></tbody>
+</table>
+</div>
+</div>
 
-            <tr>
-                <td>Juan Dela Cruz</td>
-                <td>₱10,000</td>
-                <td><span class="badge active">Active</span></td>
-            </tr>
-
-            <tr>
-                <td>Maria Santos</td>
-                <td>₱8,000</td>
-                <td><span class="badge overdue">Overdue</span></td>
-            </tr>
-
-            <tr>
-                <td>Pedro Reyes</td>
-                <td>₱5,000</td>
-                <td><span class="badge closed">Closed</span></td>
-            </tr>
-        </table>
-    </div>
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3>Add Borrower</h3>
+<input type="text" id="name" placeholder="Name">
+<input type="number" id="loan" placeholder="Loan Amount">
+<input type="date" id="due">
+<button onclick="saveBorrower()">Save</button>
+</div>
 </div>
 
 <script>
-lucide.createIcons();
+let borrowers = JSON.parse(localStorage.getItem("borrowers")) || [];
+
+function openModal(){
+document.getElementById("modal").style.display="flex";
+}
+
+function saveBorrower(){
+let name=document.getElementById("name").value;
+let loan=parseFloat(document.getElementById("loan").value);
+let due=document.getElementById("due").value;
+
+if(!name||!loan||!due)return alert("Complete all fields");
+
+borrowers.push({
+name:name,
+loan:loan,
+balance:loan,
+due:due
+});
+
+localStorage.setItem("borrowers",JSON.stringify(borrowers));
+document.getElementById("modal").style.display="none";
+renderTable();
+}
+
+function getStatus(b){
+let today=new Date();
+let dueDate=new Date(b.due);
+
+if(b.balance<=0) return "Closed";
+if(today>dueDate) return "Overdue";
+return "Active";
+}
+
+function renderTable(){
+let table=document.getElementById("borrowerTable");
+table.innerHTML="";
+
+borrowers.forEach(b=>{
+let status=getStatus(b);
+let badgeClass=status.toLowerCase();
+
+table.innerHTML+=`
+<tr>
+<td>${b.name}</td>
+<td>₱${b.loan}</td>
+<td>₱${b.balance}</td>
+<td>${b.due}</td>
+<td><span class="badge ${badgeClass}">${status}</span></td>
+</tr>
+`;
+});
+}
+
+document.getElementById("search").addEventListener("input",function(){
+let value=this.value.toLowerCase();
+let rows=document.querySelectorAll("#borrowerTable tr");
+
+rows.forEach(row=>{
+row.style.display=row.innerText.toLowerCase().includes(value)?"":"none";
+});
+});
+
+renderTable();
 </script>
 
 </body>
