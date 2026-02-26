@@ -29,4 +29,33 @@ async function recordPaymentHandler(){
 
     const payment = {
         LoanID: loanID,
-        BorrowerID:
+        BorrowerID: borrowerID,
+        PrincipalPaid: principalPaid,
+        InterestPaid: interestPaid,
+        PenaltyPaid: penaltyPaid,
+        Notes:""
+    };
+
+    const res = await fetch(API_URL, {
+        method:"POST",
+        body: JSON.stringify({action:"recordPayment", payment})
+    });
+    const result = await res.json();
+
+    if(result.success){
+        alert(`Payment recorded!\nNew Balance: ${result.Balance}\nLoan Status: ${result.LoanStatus}`);
+        loadLoansForBorrower(); // refresh loan select
+    } else {
+        alert("Error: " + result.message);
+    }
+}
+
+async function loadPaymentHistory(borrowerID){
+    const ul = document.getElementById("paymentHistory");
+    const payments = await getAllPayments();
+    ul.innerHTML = "";
+    payments.filter(p=>p.BorrowerID==borrowerID).forEach(p=>{
+        ul.innerHTML += `<li>${p.PaymentDate} - Loan ${p.LoanID}: Principal ₱${p.PrincipalPaid}, Interest ₱${p.InterestPaid}, Penalty ₱${p.PenaltyPaid}, Total ₱${p.TotalPaid}</li>`;
+    });
+    if(ul.innerHTML=="") ul.innerHTML = "<li>No payments yet.</li>";
+}
