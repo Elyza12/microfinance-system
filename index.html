@@ -1,48 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Microfinance Dashboard</title>
-<link rel="stylesheet" href="css/style.css">
-<script src="js/api.js"></script>
-<script src="js/dashboard.js"></script>
-</head>
 <body>
 
-<!-- Navigation Bar -->
-<nav class="navbar">
-  <a href="index.html">Dashboard</a>
-  <a href="borrowers.html">Borrowers</a>
-  <a href="payments.html">Payments</a>
-</nav>
+<div class="sidebar">
+    <h2>Microfinance</h2>
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="borrowers.html">Borrowers</a>
+    <a href="payments.html">Payments</a>
+</div>
 
-<h1>Microfinance Dashboard</h1>
+<div class="main">
+    <h1>Dashboard</h1>
 
-<div class="dashboard">
-  <div class="card">
-    <h3>Active Loans</h3>
-    <p id="activeLoans">0</p>
-  </div>
-  <div class="card">
-    <h3>Total Released</h3>
-    <p id="totalReleased">₱0</p>
-  </div>
-  <div class="card">
-    <h3>Total Collected</h3>
-    <p id="totalCollected">₱0</p>
-  </div>
-  <div class="card">
-    <h3>Total Profit</h3>
-    <p id="totalProfit">₱0</p>
-  </div>
-  <div class="card">
-    <h3>Overdue Loans</h3>
-    <p id="overdueLoans">0</p>
-  </div>
+    <div class="dashboard">
+        <div class="card">
+            <h3>Active Loans</h3>
+            <p id="activeLoans">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Released</h3>
+            <p id="totalReleased">₱0</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Collected</h3>
+            <p id="totalCollected">₱0</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Profit</h3>
+            <p id="totalProfit">₱0</p>
+        </div>
+
+        <div class="card">
+            <h3>Overdue Loans</h3>
+            <p id="overdueLoans">0</p>
+        </div>
+    </div>
 </div>
 
 <script>
 loadDashboard();
 </script>
+
 </body>
-</html>
