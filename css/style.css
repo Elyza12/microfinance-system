@@ -2,70 +2,76 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
+    background: #f8fafc;
     display: flex;
-    background: #f4f6f9;
 }
 
 /* SIDEBAR */
 .sidebar {
-    width: 220px;
+    width: 240px;
     height: 100vh;
-    background: #1e272e;
-    padding-top: 20px;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    padding: 30px 20px;
     position: fixed;
 }
 
 .sidebar h2 {
-    color: #fff;
-    text-align: center;
-    margin-bottom: 30px;
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: #111827;
 }
 
 .sidebar a {
     display: block;
-    color: #d2dae2;
-    padding: 12px 20px;
+    padding: 12px 15px;
+    border-radius: 12px;
     text-decoration: none;
-    transition: 0.3s;
+    color: #374151;
+    margin-bottom: 10px;
+    transition: 0.2s;
+    font-weight: 500;
 }
 
 .sidebar a:hover {
-    background: #485460;
-    color: #fff;
+    background: #f3f4f6;
 }
 
 .sidebar a.active {
-    background: #40739e;
-    color: #fff;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
 }
 
-/* MAIN CONTENT */
+/* MAIN */
 .main {
-    margin-left: 220px;
-    padding: 30px;
+    margin-left: 240px;
+    padding: 40px;
     width: 100%;
 }
 
 h1, h2 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #111827;
 }
 
-/* DASHBOARD CARDS */
+/* DASHBOARD GRID */
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
 }
 
+/* CARDS */
 .card {
     background: #ffffff;
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
     transition: 0.2s;
 }
 
@@ -74,42 +80,58 @@ h1, h2 {
 }
 
 .card h3 {
+    font-size: 14px;
+    color: #6b7280;
     margin-bottom: 10px;
-    color: #40739e;
+    font-weight: 500;
 }
 
 .card p {
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
 }
 
-/* FORMS */
+/* FORM */
 input, select {
     width: 100%;
-    padding: 10px;
-    margin: 8px 0 15px 0;
-    border-radius: 6px;
-    border: 1px solid #dcdde1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 15px;
+    font-size: 14px;
 }
 
+input:focus, select:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+/* BUTTON */
 button {
-    background: #40739e;
-    color: #fff;
-    padding: 10px 15px;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    padding: 12px;
     border: none;
-    border-radius: 6px;
+    border-radius: 12px;
+    width: 100%;
+    font-weight: 600;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 button:hover {
-    background: #273c75;
+    opacity: 0.9;
 }
 
+/* LIST */
 ul {
     list-style: none;
 }
 
 ul li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+    color: #374151;
 }
