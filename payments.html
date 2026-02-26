@@ -3,94 +3,82 @@
 <head>
 <title>Payments</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    display:flex;
-    background:#f4f6f9;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{display:flex;background:#f4f6f9;}
 
 .sidebar{
-    width:230px;
-    background:#111827;
-    color:white;
-    height:100vh;
-    padding:20px;
-    position:fixed;
+width:230px;background:#111827;color:white;height:100vh;padding:20px;position:fixed;
 }
 
-.sidebar h2{
-    margin-bottom:30px;
-}
+.sidebar h2{margin-bottom:30px;}
 
 .sidebar a{
-    display:block;
-    padding:12px;
-    margin-bottom:10px;
-    color:#cbd5e1;
-    text-decoration:none;
-    border-radius:8px;
+display:block;padding:12px;margin-bottom:10px;color:#cbd5e1;
+text-decoration:none;border-radius:8px;
 }
 
-.sidebar a:hover,
-.sidebar a.active{
-    background:#2563eb;
-    color:white;
+.sidebar a:hover,.sidebar a.active{
+background:#2563eb;color:white;
 }
 
 .main{
-    margin-left:230px;
-    padding:30px;
-    width:100%;
+margin-left:230px;padding:30px;width:100%;
+animation:fadeIn .4s ease-in-out;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
+display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;
 }
 
-.topbar h1{
-    font-size:24px;
+button{
+background:#2563eb;color:white;border:none;
+padding:10px 15px;border-radius:8px;cursor:pointer;
+transition:.2s;
 }
 
-.profile{
-    background:white;
-    padding:8px 15px;
-    border-radius:20px;
-    font-size:14px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.1);
-}
+button:hover{transform:scale(1.05);}
 
 .table-card{
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+background:white;padding:20px;border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
+table{width:100%;border-collapse:collapse;}
+
+th,td{padding:12px;border-bottom:1px solid #eee;text-align:left;}
+
+.modal{
+display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.4);justify-content:center;align-items:center;
 }
 
-th,td{
-    padding:12px;
-    text-align:left;
-    border-bottom:1px solid #eee;
+.modal-content{
+background:white;padding:25px;border-radius:12px;width:350px;
+animation:fadeIn .3s ease;
 }
 
-th{
-    background:#f9fafb;
+.modal-content select,
+.modal-content input{
+width:100%;margin-bottom:10px;padding:8px;border-radius:6px;border:1px solid #ccc;
+}
+
+.toast{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#16a34a;
+color:white;
+padding:12px 18px;
+border-radius:8px;
+display:none;
+animation:fadeIn .3s ease;
 }
 </style>
 </head>
@@ -98,43 +86,116 @@ th{
 <body>
 
 <div class="sidebar">
-    <h2>Microfinance</h2>
-    <a href="index.html">Dashboard</a>
-    <a href="borrowers.html">Borrowers</a>
-    <a href="payments.html" class="active">Payments</a>
+<h2>Microfinance</h2>
+<a href="index.html">Dashboard</a>
+<a href="borrowers.html">Borrowers</a>
+<a href="payments.html" class="active">Payments</a>
 </div>
 
 <div class="main">
-    <div class="topbar">
-        <h1>Payments</h1>
-        <div class="profile">Admin</div>
-    </div>
-
-    <div class="table-card">
-        <table>
-            <tr>
-                <th>Borrower</th>
-                <th>Date</th>
-                <th>Amount</th>
-            </tr>
-
-            <tr>
-                <td>Juan Dela Cruz</td>
-                <td>Feb 20, 2026</td>
-                <td>₱1,000</td>
-            </tr>
-
-            <tr>
-                <td>Maria Santos</td>
-                <td>Feb 18, 2026</td>
-                <td>₱800</td>
-            </tr>
-        </table>
-    </div>
+<div class="topbar">
+<h1>Payments</h1>
+<button onclick="openModal()">+ Add Payment</button>
 </div>
 
+<div class="table-card">
+<table>
+<thead>
+<tr>
+<th>Borrower</th>
+<th>Date</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody id="paymentTable"></tbody>
+</table>
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3>Add Payment</h3>
+
+<select id="borrowerSelect"></select>
+<input type="number" id="amount" placeholder="Payment Amount">
+
+<button onclick="savePayment()">Save Payment</button>
+</div>
+</div>
+
+<div class="toast" id="toast">Payment Recorded Successfully</div>
+
 <script>
-lucide.createIcons();
+let borrowers = JSON.parse(localStorage.getItem("borrowers")) || [];
+let payments = JSON.parse(localStorage.getItem("payments")) || [];
+
+function openModal(){
+document.getElementById("modal").style.display="flex";
+loadBorrowers();
+}
+
+function loadBorrowers(){
+let select=document.getElementById("borrowerSelect");
+select.innerHTML="";
+
+borrowers
+.filter(b=>b.balance>0)
+.forEach((b,index)=>{
+select.innerHTML+=`<option value="${index}">
+${b.name} (Balance: ₱${b.balance})
+</option>`;
+});
+}
+
+function savePayment(){
+let index=document.getElementById("borrowerSelect").value;
+let amount=parseFloat(document.getElementById("amount").value);
+
+if(!amount||amount<=0) return alert("Enter valid amount");
+
+if(amount>borrowers[index].balance){
+return alert("Payment exceeds remaining balance");
+}
+
+borrowers[index].balance -= amount;
+
+payments.push({
+name:borrowers[index].name,
+date:new Date().toLocaleDateString(),
+amount:amount
+});
+
+localStorage.setItem("borrowers",JSON.stringify(borrowers));
+localStorage.setItem("payments",JSON.stringify(payments));
+
+document.getElementById("modal").style.display="none";
+showToast();
+renderPayments();
+}
+
+function renderPayments(){
+let table=document.getElementById("paymentTable");
+table.innerHTML="";
+
+payments.forEach(p=>{
+table.innerHTML+=`
+<tr>
+<td>${p.name}</td>
+<td>${p.date}</td>
+<td>₱${p.amount}</td>
+</tr>
+`;
+});
+}
+
+function showToast(){
+let toast=document.getElementById("toast");
+toast.style.display="block";
+setTimeout(()=>{toast.style.display="none";},2000);
+}
+
+renderPayments();
 </script>
 
 </body>
