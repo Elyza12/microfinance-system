@@ -8,34 +8,42 @@
 <script src="js/borrowers.js"></script>
 </head>
 <body>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <a href="index.html">Dashboard</a>
+  <a href="borrowers.html">Borrowers</a>
+  <a href="payments.html">Payments</a>
+</nav>
+
 <h2>Borrowers</h2>
 
 <div class="card">
-<h3>Add Borrower</h3>
-<input type="text" id="borrowerName" placeholder="Full Name">
-<input type="text" id="borrowerContact" placeholder="Contact">
-<input type="text" id="borrowerAddress" placeholder="Address">
-<button onclick="addBorrowerHandler()">Add Borrower</button>
+  <h3>Add Borrower</h3>
+  <input type="text" id="borrowerName" placeholder="Full Name">
+  <input type="text" id="borrowerContact" placeholder="Contact">
+  <input type="text" id="borrowerAddress" placeholder="Address">
+  <button onclick="addBorrowerHandler()">Add Borrower</button>
 </div>
 
 <div class="card">
-<h3>Borrower List</h3>
-<ul id="borrowerList"></ul>
+  <h3>Borrower List</h3>
+  <ul id="borrowerList"></ul>
 </div>
 
 <div class="card">
-<h3>Create Loan</h3>
-<select id="borrowerSelect"></select>
-<input type="number" id="loanPrincipal" placeholder="Principal">
-<select id="interestType">
-<option value="PERCENT">Percent</option>
-<option value="MANUAL">Manual</option>
-</select>
-<input type="number" id="interestRate" placeholder="Interest Rate or Amount">
-<input type="date" id="releaseDate">
-<input type="date" id="dueDate">
-<input type="number" id="monthlyPenalty" placeholder="Monthly Penalty">
-<button onclick="addLoanHandler()">Create Loan</button>
+  <h3>Create Loan</h3>
+  <select id="borrowerSelect"></select>
+  <input type="number" id="loanPrincipal" placeholder="Principal">
+  <select id="interestType">
+    <option value="PERCENT">Percent</option>
+    <option value="MANUAL">Manual</option>
+  </select>
+  <input type="number" id="interestRate" placeholder="Interest Rate or Amount">
+  <input type="date" id="releaseDate">
+  <input type="date" id="dueDate">
+  <input type="number" id="monthlyPenalty" placeholder="Monthly Penalty">
+  <button onclick="addLoanHandler()">Create Loan</button>
 </div>
 
 <script>
