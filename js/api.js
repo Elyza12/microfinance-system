@@ -19,3 +19,12 @@ async function addLoan(loanData){
     const res = await fetch(API_URL, {method:"POST", body: JSON.stringify({action:"addLoan", data: loanData})});
     return await res.json();
 }
+async function getAllLoans(){
+    const res = await fetch(API_URL, {method:"POST", body: JSON.stringify({action:"getAllLoans"})});
+    return await res.json();
+}
+
+async function getAllPayments(){
+    const res = await fetch(API_URL, {method:"POST", body: JSON.stringify({action:"getAllPayments"})});
+    return await res.json();
+}
