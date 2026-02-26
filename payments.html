@@ -8,21 +8,29 @@
 <script src="js/payments.js"></script>
 </head>
 <body>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <a href="index.html">Dashboard</a>
+  <a href="borrowers.html">Borrowers</a>
+  <a href="payments.html">Payments</a>
+</nav>
+
 <h2>Payments</h2>
 
 <div class="card">
-<h3>Record Payment</h3>
-<select id="borrowerSelect"></select>
-<select id="loanSelect"></select>
-<input type="number" id="principalPaid" placeholder="Principal Paid">
-<input type="number" id="interestPaid" placeholder="Interest Paid">
-<input type="number" id="penaltyPaid" placeholder="Penalty Paid">
-<button onclick="recordPaymentHandler()">Submit Payment</button>
+  <h3>Record Payment</h3>
+  <select id="borrowerSelect"></select>
+  <select id="loanSelect"></select>
+  <input type="number" id="principalPaid" placeholder="Principal Paid">
+  <input type="number" id="interestPaid" placeholder="Interest Paid">
+  <input type="number" id="penaltyPaid" placeholder="Penalty Paid">
+  <button onclick="recordPaymentHandler()">Submit Payment</button>
 </div>
 
 <div class="card">
-<h3>Payment History</h3>
-<ul id="paymentHistory"></ul>
+  <h3>Payment History</h3>
+  <ul id="paymentHistory"></ul>
 </div>
 
 <script>
