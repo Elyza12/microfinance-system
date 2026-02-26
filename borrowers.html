@@ -9,6 +9,7 @@
 </head>
 <body>
 <h2>Borrowers</h2>
+
 <div class="card">
 <h3>Add Borrower</h3>
 <input type="text" id="borrowerName" placeholder="Full Name">
@@ -16,10 +17,12 @@
 <input type="text" id="borrowerAddress" placeholder="Address">
 <button onclick="addBorrowerHandler()">Add Borrower</button>
 </div>
+
 <div class="card">
 <h3>Borrower List</h3>
 <ul id="borrowerList"></ul>
 </div>
+
 <div class="card">
 <h3>Create Loan</h3>
 <select id="borrowerSelect"></select>
@@ -34,6 +37,7 @@
 <input type="number" id="monthlyPenalty" placeholder="Monthly Penalty">
 <button onclick="addLoanHandler()">Create Loan</button>
 </div>
+
 <script>
 loadBorrowers();
 </script>
