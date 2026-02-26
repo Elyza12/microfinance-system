@@ -1,54 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Microfinance Dashboard</title>
+<meta charset="UTF-8">
+<title>Microfinance Dashboard</title>
 
-    <!-- THIS IS IMPORTANT -->
-    <link rel="stylesheet" href="css/style.css?v=1">
+<link rel="stylesheet" href="css/style.css?v=2">
 
-    <script src="js/api.js"></script>
-    <script src="js/dashboard.js"></script>
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- ChartJS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
 </head>
 
 <body>
 
 <div class="sidebar">
-    <h2>Microfinance</h2>
-    <a href="index.html" class="active">Dashboard</a>
-    <a href="borrowers.html">Borrowers</a>
-    <a href="payments.html">Payments</a>
+    <h2><i class="fa-solid fa-coins"></i> Finance</h2>
+    <a href="index.html" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+    <a href="borrowers.html"><i class="fa-solid fa-users"></i> Borrowers</a>
+    <a href="payments.html"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
 </div>
 
 <div class="main">
-    <h1>Dashboard</h1>
+
+    <div class="topbar">
+        <h1>Dashboard Overview</h1>
+        <div class="profile">
+            <i class="fa-solid fa-user"></i> Admin
+        </div>
+    </div>
 
     <div class="dashboard">
-        <div class="card">
+
+        <div class="card blue">
+            <div class="card-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
             <h3>Active Loans</h3>
             <p id="activeLoans">0</p>
         </div>
 
-        <div class="card">
+        <div class="card purple">
+            <div class="card-icon"><i class="fa-solid fa-money-check-dollar"></i></div>
             <h3>Total Released</h3>
             <p id="totalReleased">₱0</p>
         </div>
 
-        <div class="card">
+        <div class="card green">
+            <div class="card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
             <h3>Total Collected</h3>
             <p id="totalCollected">₱0</p>
         </div>
 
-        <div class="card">
+        <div class="card green">
+            <div class="card-icon"><i class="fa-solid fa-chart-pie"></i></div>
             <h3>Total Profit</h3>
             <p id="totalProfit">₱0</p>
         </div>
 
-        <div class="card">
+        <div class="card red">
+            <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
             <h3>Overdue Loans</h3>
             <p id="overdueLoans">0</p>
         </div>
+
     </div>
+
+    <div class="card">
+        <h3>Monthly Collection Overview</h3>
+        <canvas id="financeChart"></canvas>
+    </div>
+
 </div>
 
 <script>
