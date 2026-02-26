@@ -1,40 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Payments</title>
-<link rel="stylesheet" href="css/style.css">
-<script src="js/api.js"></script>
-<script src="js/payments.js"></script>
-</head>
 <body>
 
-<!-- Navigation Bar -->
-<nav class="navbar">
-  <a href="index.html">Dashboard</a>
-  <a href="borrowers.html">Borrowers</a>
-  <a href="payments.html">Payments</a>
-</nav>
-
-<h2>Payments</h2>
-
-<div class="card">
-  <h3>Record Payment</h3>
-  <select id="borrowerSelect"></select>
-  <select id="loanSelect"></select>
-  <input type="number" id="principalPaid" placeholder="Principal Paid">
-  <input type="number" id="interestPaid" placeholder="Interest Paid">
-  <input type="number" id="penaltyPaid" placeholder="Penalty Paid">
-  <button onclick="recordPaymentHandler()">Submit Payment</button>
+<div class="sidebar">
+    <h2>Microfinance</h2>
+    <a href="index.html">Dashboard</a>
+    <a href="borrowers.html">Borrowers</a>
+    <a href="payments.html" class="active">Payments</a>
 </div>
 
-<div class="card">
-  <h3>Payment History</h3>
-  <ul id="paymentHistory"></ul>
+<div class="main">
+    <h2>Payments</h2>
+
+    <div class="card">
+        <h3>Record Payment</h3>
+        <select id="borrowerSelect"></select>
+        <select id="loanSelect"></select>
+        <input type="number" id="principalPaid" placeholder="Principal Paid">
+        <input type="number" id="interestPaid" placeholder="Interest Paid">
+        <input type="number" id="penaltyPaid" placeholder="Penalty Paid">
+        <button onclick="recordPaymentHandler()">Submit Payment</button>
+    </div>
+
+    <div class="card">
+        <h3>Payment History</h3>
+        <ul id="paymentHistory"></ul>
+    </div>
 </div>
 
 <script>
 loadBorrowersForPayment();
 </script>
+
 </body>
-</html>
